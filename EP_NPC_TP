@@ -3,7 +3,7 @@ local screenGui = Instance.new("ScreenGui")
 local teleportButton = Instance.new("TextButton")
 
 -- Set up the ScreenGui
-screenGui.Parent = player:WaitForChild("PlayerGui")
+screenGui.Parent = game.Players.LocalPlayer
 screenGui.Name = "TeleportGUI"
 
 -- Set up the Button
