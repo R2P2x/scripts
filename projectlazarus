@@ -1,3 +1,5 @@
+print("Future_Externals \"Project Lazarus\" script loading...")
+
 
 local PLGUI = Instance.new("ScreenGui")
 local Topframe = Instance.new("Frame")
