@@ -21,7 +21,7 @@ local function teleportModels()
             if model:IsA("Model") and model:FindFirstChild("Character") then
                 local character = model.Character
                 local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-                if humanoidRootPart and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                if humanoidRootPart and player.Character and player:FindFirstChild("HumanoidRootPart") then
                     humanoidRootPart.CFrame = player.HumanoidRootPart.CFrame
                 end
             end
