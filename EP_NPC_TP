@@ -1,0 +1,31 @@
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui")
+local teleportButton = Instance.new("TextButton")
+
+-- Set up the ScreenGui
+screenGui.Parent = player:WaitForChild("PlayerGui")
+screenGui.Name = "TeleportGUI"
+
+-- Set up the Button
+teleportButton.Parent = screenGui
+teleportButton.Size = UDim2.new(0, 200, 0, 50)
+teleportButton.Position = UDim2.new(0.5, -100, 0.5, -25)
+teleportButton.Text = "Teleport Models"
+teleportButton.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+
+-- Function to teleport models
+local function teleportModels()
+    for _, model in pairs(game.Level.Actors:FindAllChildrenOfType("Model")) do
+        local character = model:FindFirstChild("Character")
+        if character then
+            local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+            if humanoidRootPart and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                humanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
+            end
+        end
+    end
+    screenGui:Destroy() -- Delete GUI after teleporting
+end
+
+-- Connect the button click event to the teleport function
+teleportButton.MouseButton1Click:Connect(teleportModels)
