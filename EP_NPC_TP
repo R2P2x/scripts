@@ -15,7 +15,7 @@ teleportButton.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
 
 -- Function to teleport models
 local function teleportModels()
-    local actors = workspace:FindFirstChild("Actors")
+    local actors = Workspace.Level:FindFirstChild("Actors")
     if actors then
         for _, model in pairs(actors:GetChildren()) do
             if model:IsA("Model") and model:FindFirstChild("Character") then
