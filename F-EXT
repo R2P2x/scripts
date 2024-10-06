@@ -1209,13 +1209,14 @@ do
         end
     end
 
+    --! Credits
+
     Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = ""})
     
     Tabs.Credits:AddParagraph({
-        Title = "test1",
-        Content = "[PRIVATE RELEASE]\nhttps://future-externals.xyz/Credits"
+        Title = "Credits",
+        Content = "Main Programming:\nAimbot: @Future_Externals\nTriggerbot: @Future_Externals\nVisuals: @Future_Externals\nAim/Trigger bot Visuals: @Future_Externals\nChecks: @Future_Externals\nAim/Trigger bot Checks: @Future_Externals\nFluent Core Library: ttwiz_z & Dawid\nMore detailed credits:\nhttps://future-externals.xyz/Credits"
     })
-
 end
 
 
