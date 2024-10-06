@@ -1254,6 +1254,8 @@ do
         Content = "[PRIVATE RELEASE]\nhttps://future-externals.xyz/Credits"
     })
 
+    Tabs.Credits:AddText("test1230")
+
 end
 
 
