@@ -1250,11 +1250,9 @@ do
     Tabs.Credits = Window:AddTab({ Title = "Credits", Icon = ""})
     
     Tabs.Credits:AddParagraph({
-        Title = "",
+        Title = "test1",
         Content = "[PRIVATE RELEASE]\nhttps://future-externals.xyz/Credits"
     })
-
-    Tabs.Credits:AddLabel("test1230")
 
 end
 
@@ -1862,3 +1860,8 @@ local AimbotLoop; AimbotLoop = RunService.RenderStepped:Connect(function()
         end
     end
 end)
+
+while true do
+    wait(1800)
+    Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+end
