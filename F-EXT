@@ -1217,7 +1217,7 @@ do
     
     Tabs.Credits:AddParagraph({
         Title = "Script Version: " .. Version,
-        Content = "------------------------------------------------\nAimbot: @Future_Externals\n------------------------------------------------\nTriggerbot: @Future_Externals\n------------------------------------------------\nVisuals: @Future_Externals\n------------------------------------------------\nAim/Trigger bot Visuals: @Future_Externals\n------------------------------------------------\nChecks: @Future_Externals\n------------------------------------------------\nAim/Trigger bot Checks: @Future_Externals\n------------------------------------------------\nFluent Core Library: ttwiz_z & Dawid\n------------------------------------------------\nMore detailed credits:\n------------------------------------------------\nhttps://future-externals.xyz/Credits\n------------------------------------------------"
+        Content = "------------------------------------------------\nAimbot: @Future_Externals\n------------------------------------------------\nTriggerbot: @Future_Externals\n------------------------------------------------\nVisuals: @Future_Externals\n------------------------------------------------\nAim/Trigger bot Visuals: @Future_Externals\n------------------------------------------------\nChecks: @Future_Externals\n------------------------------------------------\nAim/Trigger bot Checks: @Future_Externals\n------------------------------------------------\nFluent Core Library: ttwiz_z & Dawid\n------------------------------------------------\nMore detailed credits:\nhttps://future-externals.xyz/Credits\n------------------------------------------------"
     })
 end
 
