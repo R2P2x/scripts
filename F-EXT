@@ -274,9 +274,6 @@ do
         ShowWarning = true
     end
 
-    table.insert(AimModeDropdown.Values, "Silent")
-       AimModeDropdown:BuildDropdownList()
-
     local SilentAimMethodsDropdown = AimbotSection:AddDropdown("SilentAimMethods", {
         Title = "Silent Aim Methods",
         Description = "Sets the Silent Aim Methods",
