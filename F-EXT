@@ -1272,13 +1272,6 @@ end
 
 Notify("Successfully initialized!")
 
-while true do
-    Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
-    wait(1800)
-    Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
-    wait(1800)
-end
-
 --! Fields Handler
 
 local function ResetAimbotFields(SaveAiming, SaveTarget)
@@ -1867,4 +1860,23 @@ local AimbotLoop; AimbotLoop = RunService.RenderStepped:Connect(function()
     end
 end)
 
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+wait(900)
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+wait(1800)
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+wait(1800)
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+wait(1800)
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+wait(1800)
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+wait(1800)
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+wait(1800)
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+wait(1800)
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+wait(1800)
+Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
 
