@@ -99,8 +99,6 @@ local Configuration = {}
 Configuration.Aimbot = ImportedConfiguration["Aimbot"] or false
 Configuration.OnePressAimingMode = ImportedConfiguration["OnePressAimingMode"] or false
 Configuration.AimMode = ImportedConfiguration["AimMode"] or "Camera"
-Configuration.SilentAimMethods = ImportedConfiguration["SilentAimMethods"] or { "Mouse.Hit / Mouse.Target", "GetMouseLocation" }
-Configuration.SilentAimChance = ImportedConfiguration["SilentAimChance"] or 100
 Configuration.OffAfterKill = ImportedConfiguration["OffAfterKill"] or false
 Configuration.AimKey = ImportedConfiguration["AimKey"] or "RMB"
 Configuration.AimPartDropdownValues = ImportedConfiguration["AimPartDropdownValues"] or { "Head", "HumanoidRootPart" }
@@ -1061,13 +1059,7 @@ do
                         end
                         for Key, Option in next, Fluent.Options do
                             if Option.Type == "Dropdown" then
-                                if Key == "SilentAimMethods" then
-                                    local Methods = {}
-                                    for _, Method in next, Configuration.SilentAimMethods do
-                                        Methods[Method] = true
-                                    end
-                                    Option:SetValue(Methods)
-                                elseif Key == "AimPart" then
+                                if Key == "AimPart" then
                                     Option:SetValues(Configuration.AimPartDropdownValues)
                                     Option:SetValue(Configuration.AimPart)
                                 elseif Key == "IgnoredPlayers" then
