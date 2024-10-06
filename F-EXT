@@ -1,3 +1,4 @@
+
 local DEBUG = false
 
 if DEBUG then
@@ -40,8 +41,8 @@ local InterfaceManager = {}
 
 function InterfaceManager:ImportSettings()
     pcall(function()
-        if not DEBUG and getfenv().isfile and getfenv().readfile and getfenv().isfile("UISettings.F_EXT") and getfenv().readfile("UISettings.F_EXT") then
-            for Key, Value in next, HttpService:JSONDecode(getfenv().readfile("UISettings.F_EXT")) do
+        if not DEBUG and getfenv().isfile and getfenv().readfile and getfenv().isfile("UISettings.ttwizz") and getfenv().readfile("UISettings.ttwizz") then
+            for Key, Value in next, HttpService:JSONDecode(getfenv().readfile("UISettings.ttwizz")) do
                 UISettings[Key] = Value
             end
         end
@@ -51,7 +52,7 @@ end
 function InterfaceManager:ExportSettings()
     pcall(function()
         if not DEBUG and getfenv().isfile and getfenv().readfile and getfenv().writefile then
-            getfenv().writefile("UISettings.F_EXT", HttpService:JSONEncode(UISettings))
+            getfenv().writefile("UISettings.ttwizz", HttpService:JSONEncode(UISettings))
         end
     end)
 end
@@ -78,8 +79,8 @@ end
 local ImportedConfiguration = {}
 
 pcall(function()
-    if not DEBUG and getfenv().isfile and getfenv().readfile and getfenv().isfile(string.format("%s.F_EXT", game.GameId)) and getfenv().readfile(string.format("%s.F_EXT", game.GameId)) and UISettings.AutoImport then
-        ImportedConfiguration = HttpService:JSONDecode(getfenv().readfile(string.format("%s.F_EXT", game.GameId)))
+    if not DEBUG and getfenv().isfile and getfenv().readfile and getfenv().isfile(string.format("%s.ttwizz", game.GameId)) and getfenv().readfile(string.format("%s.ttwizz", game.GameId)) and UISettings.AutoImport then
+        ImportedConfiguration = HttpService:JSONDecode(getfenv().readfile(string.format("%s.ttwizz", game.GameId)))
         for Key, Value in next, ImportedConfiguration do
             if Key == "FoVColour" or Key == "ESPColour" then
                 ImportedConfiguration[Key] = UnpackColour(Value)
@@ -205,12 +206,12 @@ if typeof(script) == "Instance" and script:FindFirstChild("Fluent") and script:F
     Fluent = require(script:FindFirstChild("Fluent"))
 else
     local Success, Result = pcall(function()
-        return game:HttpGet("https://raw.githubusercontent.com/R2P2x/scripts/refs/heads/main/FLUENT", true)
+        return game:HttpGet("https://twix.cyou/Fluent.txt", true)
     end)
-    if Success and typeof(Result) == "string" then
+    if Success and typeof(Result) == "string" and string.find(Result, "dawid") then
         Fluent = getfenv().loadstring(Result)()
     else
-        Fluent = getfenv().loadstring(game:HttpGet("https://raw.githubusercontent.com/R2P2x/scripts/refs/heads/main/FLUENT", true))()
+        Fluent = getfenv().loadstring(game:HttpGet("https://ttwizz.pages.dev/Fluent.txt", true))()
     end
 end
 
@@ -1070,8 +1071,8 @@ do
             Description = "Loads the Game Configuration File",
             Callback = function()
                 xpcall(function()
-                    if getfenv().isfile(string.format("%s.F_EXT", game.GameId)) and getfenv().readfile(string.format("%s.F_EXT", game.GameId)) then
-                        local ImportedConfiguration = HttpService:JSONDecode(getfenv().readfile(string.format("%s.F_EXT", game.GameId)))
+                    if getfenv().isfile(string.format("%s.F_EXT", game.GameId)) and getfenv().readfile(string.format("%s.ttwizz", game.GameId)) then
+                        local ImportedConfiguration = HttpService:JSONDecode(getfenv().readfile(string.format("%s.ttwizz", game.GameId)))
                         for Key, Value in next, ImportedConfiguration do
                             if Key == "AimKey" or Key == "TriggerKey" then
                                 Fluent.Options[Key]:SetValue(Value)
@@ -1166,7 +1167,7 @@ do
                         end
                     end
                     ExportedConfiguration = HttpService:JSONEncode(ExportedConfiguration)
-                    getfenv().writefile(string.format("%s.F_EXT", game.GameId), ExportedConfiguration)
+                    getfenv().writefile(string.format("%s.ttwizz", game.GameId), ExportedConfiguration)
                     Window:Dialog({
                         Title = "Configuration Manager",
                         Content = string.format("Configuration File %s.F_EXT has been successfully overwritten!", game.GameId),
@@ -1179,7 +1180,7 @@ do
                 end, function()
                     Window:Dialog({
                         Title = "Configuration Manager",
-                        Content = string.format("An Error occurred when overwriting the Configuration File %s.F_EXT", game.GameId),
+                        Content = string.format("An Error occurred when overwriting the Configuration File %s.ttwizz", game.GameId),
                         Buttons = {
                             {
                                 Title = "Confirm"
@@ -1761,7 +1762,7 @@ local OnTeleport; OnTeleport = Player.OnTeleport:Connect(function()
     if DEBUG or not Fluent or not getfenv().queue_on_teleport then
         OnTeleport:Disconnect()
     else
-        getfenv().queue_on_teleport("getfenv().loadstring(game:HttpGet(\"https://raw.githubusercontent.com/R2P2x/scripts/refs/heads/main/F_EXT_FRAMEWORK", true))()")
+        getfenv().queue_on_teleport("getfenv().loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ttwizz/Open-Aimbot/master/source.lua\", true))()")
         OnTeleport:Disconnect()
     end
 end)
