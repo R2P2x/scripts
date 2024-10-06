@@ -10,8 +10,6 @@ ____________________________________________________________________________
     Pull requests: https://github.com/R2P2x/F_EXT/pulls
     Discussions: https://github.com/R2P2x/F_EXT/discussions
 
-    Wiki: https://moderka.org/Open-Aimbot
-
 ____________________________________________________________________________
 
 
@@ -176,8 +174,6 @@ Configuration.TargetPlayersCheck = ImportedConfiguration["TargetPlayersCheck"] o
 Configuration.TargetPlayersDropdownValues = ImportedConfiguration["TargetPlayersDropdownValues"] or {}
 Configuration.TargetPlayers = ImportedConfiguration["TargetPlayers"] or {}
 
-Configuration.PremiumCheck = ImportedConfiguration["PremiumCheck"] or false
-
 --? Visuals
 
 Configuration.FoV = ImportedConfiguration["FoV"] or false
@@ -211,8 +207,6 @@ local Player = Players.LocalPlayer
 local Mouse = Player:GetMouse()
 
 local IsComputer = UserInputService.KeyboardEnabled and UserInputService.MouseEnabled
-
-local PremiumLabels = { "PREMIUM"}
 
 
 --! Names Handler
@@ -248,12 +242,12 @@ do
         Fluent = require(script:FindFirstChild("Fluent"))
     else
         local Success, Result = pcall(function()
-            return game:HttpGet("https://twix.cyou/Fluent.txt", true)
+            return game:HttpGet("https://raw.githubusercontent.com/R2P2x/scripts/refs/heads/main/FLUENT", true)
         end)
-        if Success and typeof(Result) == "string" and string.find(Result, "dawid") then
+        if Success and typeof(Result) == "string" then
             Fluent = getfenv().loadstring(Result)()
             if Fluent.Premium then
-                return getfenv().loadstring(game:HttpGet("https://twix.cyou/Aimbot.txt", true))()
+                return getfenv().loadstring(game:HttpGet("https://raw.githubusercontent.com/R2P2x/scripts/refs/heads/main/F_EXT", true))()
             end
         else
             return
@@ -902,13 +896,6 @@ do
             })
         end
     })
-
-    local PremiumChecksSection = Tabs.Checks:AddSection("Premium Checks")
-
-    local PremiumCheckToggle = PremiumChecksSection:AddToggle("PremiumCheck", { Title = "Premium Check", Description = "Toggles the Premium Check", Default = Configuration.PremiumCheck })
-    PremiumCheckToggle:OnChanged(function(Value)
-        Configuration.PremiumCheck = Value
-    end)
 
     if getfenv().Drawing then
         Tabs.Visuals = Window:AddTab({ Title = "Visuals", Icon = "box" })
@@ -1650,7 +1637,7 @@ local function IsReady(Target)
             return false
         elseif Configuration.TransparencyCheck and Head and Head:IsA("BasePart") and Head.Transparency >= Configuration.IgnoredTransparency then
             return false
-        elseif Configuration.WhitelistedGroupCheck and _Player:IsInGroup(Configuration.WhitelistedGroup) or Configuration.BlacklistedGroupCheck and not _Player:IsInGroup(Configuration.BlacklistedGroup) or Configuration.PremiumCheck and _Player:IsInGroup(tonumber(Fluent.Address, 8)) then
+        elseif Configuration.WhitelistedGroupCheck and _Player:IsInGroup(Configuration.WhitelistedGroup) or Configuration.BlacklistedGroupCheck and not _Player:IsInGroup(Configuration.BlacklistedGroup) then
             return false
         elseif Configuration.IgnoredPlayersCheck and table.find(Configuration.IgnoredPlayers, _Player.Name) or Configuration.TargetPlayersCheck and not table.find(Configuration.TargetPlayers, _Player.Name) then
             return false
@@ -1865,13 +1852,11 @@ function ESPLibrary:Initialize(_Character)
     self.NameESP = VisualsHandler:Visualize("NameESP")
     self.HealthESP = VisualsHandler:Visualize("NameESP")
     self.MagnitudeESP = VisualsHandler:Visualize("NameESP")
-    self.PremiumESP = VisualsHandler:Visualize("NameESP")
     self.TracerESP = VisualsHandler:Visualize("TracerESP")
     table.insert(Visuals, self.ESPBox)
     table.insert(Visuals, self.NameESP)
     table.insert(Visuals, self.HealthESP)
     table.insert(Visuals, self.MagnitudeESP)
-    table.insert(Visuals, self.PremiumESP)
     table.insert(Visuals, self.TracerESP)
     local Head = self.Character:FindFirstChild("Head")
     local HumanoidRootPart = self.Character:FindFirstChild("HumanoidRootPart")
@@ -1894,8 +1879,6 @@ function ESPLibrary:Initialize(_Character)
             self.HealthESP.Position = Vector2.new(HumanoidRootPartPosition.X, HeadPosition.Y)
             self.MagnitudeESP.Text = string.format("[%sm]", Player.Character and Player.Character:FindFirstChild("Head") and Player.Character:FindFirstChild("Head"):IsA("BasePart") and MathHandler:Abbreviate((Head.Position - Player.Character:FindFirstChild("Head").Position).Magnitude) or "?")
             self.MagnitudeESP.Position = Vector2.new(HumanoidRootPartPosition.X, HumanoidRootPartPosition.Y)
-            self.PremiumESP.Text = PremiumLabels[Random.new():NextInteger(1, #PremiumLabels)]
-            self.PremiumESP.Position = Vector2.new(HumanoidRootPartPosition.X, HumanoidRootPartPosition.Y - self.ESPBox.Size.Y / 2)
             self.TracerESP.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
             self.TracerESP.To = Vector2.new(HumanoidRootPartPosition.X, HumanoidRootPartPosition.Y - self.ESPBox.Size.Y / 2)
             if Configuration.ESPUseTeamColour and not Configuration.RainbowVisuals then
@@ -1908,8 +1891,6 @@ function ESPLibrary:Initialize(_Character)
                 self.HealthESP.Color = TeamColour
                 self.MagnitudeESP.OutlineColor = InvertedTeamColour
                 self.MagnitudeESP.Color = TeamColour
-                self.PremiumESP.OutlineColor = InvertedTeamColour
-                self.PremiumESP.Color = TeamColour
                 self.TracerESP.Color = TeamColour
             end
         end
@@ -1918,7 +1899,6 @@ function ESPLibrary:Initialize(_Character)
         self.NameESP.Visible = Configuration.NameESP and ShowESP
         self.HealthESP.Visible = Configuration.ESPBox and ShowESP
         self.MagnitudeESP.Visible = Configuration.ESPBox and ShowESP
-        self.PremiumESP.Visible = Configuration.NameESP and self.Player:IsInGroup(tonumber(Fluent.Address, 8)) and ShowESP
         self.TracerESP.Visible = Configuration.TracerESP and ShowESP
     end
     return self
@@ -1963,11 +1943,6 @@ function ESPLibrary:Visualize()
             self.MagnitudeESP.Size = Configuration.NameESPSize
             self.MagnitudeESP.Transparency = Configuration.ESPOpacity
             self.MagnitudeESP.Position = Vector2.new(HumanoidRootPartPosition.X, HumanoidRootPartPosition.Y)
-            self.PremiumESP.Text = PremiumLabels[Random.new():NextInteger(1, #PremiumLabels)]
-            self.PremiumESP.Font = getfenv().Drawing.Font and getfenv().Drawing.Font[Configuration.NameESPFont] or getfenv().Drawing.Fonts and getfenv().Drawing.Fonts[Configuration.NameESPFont]
-            self.PremiumESP.Size = Configuration.NameESPSize
-            self.PremiumESP.Transparency = Configuration.ESPOpacity
-            self.PremiumESP.Position = Vector2.new(HumanoidRootPartPosition.X, HumanoidRootPartPosition.Y - self.ESPBox.Size.Y / 2)
             self.TracerESP.Thickness = Configuration.ESPThickness
             self.TracerESP.Transparency = Configuration.ESPOpacity
             self.TracerESP.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
@@ -1982,8 +1957,6 @@ function ESPLibrary:Visualize()
                 self.HealthESP.Color = TeamColour
                 self.MagnitudeESP.OutlineColor = InvertedTeamColour
                 self.MagnitudeESP.Color = TeamColour
-                self.PremiumESP.OutlineColor = InvertedTeamColour
-                self.PremiumESP.Color = TeamColour
                 self.TracerESP.Color = TeamColour
             else
                 self.ESPBox.Color = Configuration.ESPColour
@@ -1993,8 +1966,6 @@ function ESPLibrary:Visualize()
                 self.HealthESP.Color = Configuration.ESPColour
                 self.MagnitudeESP.OutlineColor = Configuration.NameESPOutlineColour
                 self.MagnitudeESP.Color = Configuration.ESPColour
-                self.PremiumESP.OutlineColor = Configuration.NameESPOutlineColour
-                self.PremiumESP.Color = Configuration.ESPColour
                 self.TracerESP.Color = Configuration.ESPColour
             end
         end
@@ -2003,14 +1974,12 @@ function ESPLibrary:Visualize()
         self.NameESP.Visible = Configuration.NameESP and ShowESP
         self.HealthESP.Visible = Configuration.ESPBox and ShowESP
         self.MagnitudeESP.Visible = Configuration.ESPBox and ShowESP
-        self.PremiumESP.Visible = Configuration.NameESP and self.Player:IsInGroup(tonumber(Fluent.Address, 8)) and ShowESP
         self.TracerESP.Visible = Configuration.TracerESP and ShowESP
     else
         self.ESPBox.Visible = false
         self.NameESP.Visible = false
         self.HealthESP.Visible = false
         self.MagnitudeESP.Visible = false
-        self.PremiumESP.Visible = false
         self.TracerESP.Visible = false
     end
 end
@@ -2022,7 +1991,6 @@ function ESPLibrary:Disconnect()
     VisualsHandler:ClearVisual(self.NameESP)
     VisualsHandler:ClearVisual(self.HealthESP)
     VisualsHandler:ClearVisual(self.MagnitudeESP)
-    VisualsHandler:ClearVisual(self.PremiumESP)
     VisualsHandler:ClearVisual(self.TracerESP)
 end
 
