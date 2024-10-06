@@ -237,11 +237,9 @@ do
         MinimizeKey = UISettings.MinimizeKey
     })
 
-    local Tabs = { Aimbot = Window:AddTab({ Title = "Aimbot", Icon = "crosshair", Credits = Window:AddTab({ Title = "Credits", Icon = ""})}
+    local Tabs = { Aimbot = Window:AddTab({ Title = "Aimbot", Icon = "crosshair"}), Credits = Window:AddTab({ Title = "Credits", Icon = "crosshair"})}
 
     Window:SelectTab(1)   
-
-    Credits = Window:AddTab({ Title = "Credits", Icon = ""})
 
     Tabs.Aimbot:AddParagraph({
         Title = "Aimbot",
