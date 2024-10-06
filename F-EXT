@@ -274,13 +274,6 @@ do
         ShowWarning = true
     end
 
-    local SilentAimMethodsDropdown = AimbotSection:AddDropdown("SilentAimMethods", {
-        Title = "Silent Aim Methods",
-        Description = "Sets the Silent Aim Methods",
-        Values = { "Mouse.Hit / Mouse.Target", "GetMouseLocation", "Raycast", "FindPartOnRay", "FindPartOnRayWithIgnoreList", "FindPartOnRayWithWhitelist" },
-        Multi = true,
-        Default = Configuration.SilentAimMethods
-    })
     SilentAimMethodsDropdown:OnChanged(function(Value)
         Configuration.SilentAimMethods = {}
         for Key, _ in next, Value do
