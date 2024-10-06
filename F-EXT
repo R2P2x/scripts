@@ -1254,7 +1254,7 @@ do
         Content = "[PRIVATE RELEASE]\nhttps://future-externals.xyz/Credits"
     })
 
-    Tabs.Credits:AddText("test1230")
+    Tabs.Credits:AddLabel("test1230")
 
 end
 
@@ -1267,7 +1267,7 @@ local function Notify(Message)
             Title = "Future's Externals",
             Content = Message,
             SubContent = "By @Future_Externals",
-            Duration = 2.5
+            Duration = 5
         })
     end
 end
