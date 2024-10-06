@@ -274,26 +274,6 @@ do
         ShowWarning = true
     end
 
-    SilentAimMethodsDropdown:OnChanged(function(Value)
-        Configuration.SilentAimMethods = {}
-        for Key, _ in next, Value do
-            if typeof(Key) == "string" then
-                table.insert(Configuration.SilentAimMethods, Key)
-            end
-        end
-    end)
-
-    AimbotSection:AddSlider("SilentAimChance", {
-        Title = "Silent Aim Chance",
-        Description = "Changes the Hit Chance for Silent Aim",
-        Default = Configuration.SilentAimChance,
-        Min = 1,
-        Max = 100,
-        Rounding = 1,
-        Callback = function(Value)
-            Configuration.SilentAimChance = Value
-        end
-    })
 
     local OffAfterKillToggle = AimbotSection:AddToggle("OffAfterKill", { Title = "Off After Kill", Description = "Disables the Aiming Mode after killing a Target", Default = Configuration.OffAfterKill })
     OffAfterKillToggle:OnChanged(function(Value)
