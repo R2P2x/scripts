@@ -1859,11 +1859,10 @@ local AimbotLoop; AimbotLoop = RunService.RenderStepped:Connect(function()
             ResetAimbotFields(true)
         end
     end
+    while true do
+        Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+        wait(1800)
+        Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
+        wait(1800)
+    end
 end)
-
-while true do
-    Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
-    wait(1800)
-    Notify("Enjoying Future's Externals? Have feedback for updates? Tell me!n\https://future-externals.xyz/tell-me")
-    wait(1800)
-end
