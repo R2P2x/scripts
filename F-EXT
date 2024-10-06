@@ -229,7 +229,7 @@ end)
 do
     local Window = Fluent:CreateWindow({
         Title = "Future's Externals",
-        SubTitle = "[PRIVATE RELEASE VERSION " .. Version .. "]",
+        SubTitle = "[PRIVATE RELEASE V" .. Version .. "]",
         TabWidth = UISettings.TabWidth,
         Size = UDim2.fromOffset(table.unpack(UISettings.Size)),
         Theme = UISettings.Theme,
